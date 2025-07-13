@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageId>MessageBus.Core</PackageId>
+    <PackageId>DigitTwin.MessageBus.Core</PackageId>
     <Version>1.0.0</Version>
     <Authors>Yagudin Aleksandr</Authors>
     <Company>Yagudin Aleksandr</Company>

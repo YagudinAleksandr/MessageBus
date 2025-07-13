@@ -60,9 +60,9 @@ jobs:
             --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
         done
 
-    - name: Publish MessageBus.Abstractions to NuGet.org
+    - name: Publish DigitTwin.MessageBus.Abstractions to NuGet.org
       run: |
-        PKG="./artifacts/MessageBus.Abstractions.${{ steps.version.outputs.VERSION }}.nupkg"
+        PKG="./artifacts/DigitTwin.MessageBus.Abstractions.${{ steps.version.outputs.VERSION }}.nupkg"
         if [ -f "$PKG" ]; then
           echo "Publishing $PKG to NuGet.org"
           dotnet nuget push $PKG \
@@ -73,9 +73,9 @@ jobs:
           echo "Package $PKG not found, skipping..."
         fi
 
-    - name: Publish MessageBus.Core to NuGet.org
+    - name: Publish DigitTwin.MessageBus.Core to NuGet.org
       run: |
-        PKG="./artifacts/MessageBus.Core.${{ steps.version.outputs.VERSION }}.nupkg"
+        PKG="./artifacts/DigitTwin.MessageBus.Core.${{ steps.version.outputs.VERSION }}.nupkg"
         if [ -f "$PKG" ]; then
           echo "Publishing $PKG to NuGet.org"
           dotnet nuget push $PKG \
@@ -86,9 +86,9 @@ jobs:
           echo "Package $PKG not found, skipping..."
         fi
 
-    - name: Publish MessageBus.DependecyInjection to NuGet.org
+    - name: Publish DigitTwin.MessageBus.DependecyInjection to NuGet.org
       run: |
-        PKG="./artifacts/MessageBus.DependecyInjection.${{ steps.version.outputs.VERSION }}.nupkg"
+        PKG="./artifacts/DigitTwin.MessageBus.DependecyInjection.${{ steps.version.outputs.VERSION }}.nupkg"
         if [ -f "$PKG" ]; then
           echo "Publishing $PKG to NuGet.org"
           dotnet nuget push $PKG \
@@ -99,9 +99,9 @@ jobs:
           echo "Package $PKG not found, skipping..."
         fi
 
-    - name: Publish MessageBus.MassTransit to NuGet.org
+    - name: Publish DigitTwin.MessageBus.MassTransit to NuGet.org
       run: |
-        PKG="./artifacts/MessageBus.MassTransit.${{ steps.version.outputs.VERSION }}.nupkg"
+        PKG="./artifacts/DigitTwin.MessageBus.MassTransit.${{ steps.version.outputs.VERSION }}.nupkg"
         if [ -f "$PKG" ]; then
           echo "Publishing $PKG to NuGet.org"
           dotnet nuget push $PKG \

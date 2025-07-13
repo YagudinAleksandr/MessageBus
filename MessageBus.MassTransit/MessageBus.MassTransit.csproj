@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageId>MessageBus.MassTransit</PackageId>
+    <PackageId>DigitTwin.MessageBus.MassTransit</PackageId>
     <Version>1.0.0</Version>
     <Authors>Yagudin Aleksandr</Authors>
     <Company>Yagudin Aleksandr</Company>

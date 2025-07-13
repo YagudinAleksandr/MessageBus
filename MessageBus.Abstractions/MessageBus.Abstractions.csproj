@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageId>MessageBus.Abstractions</PackageId>
+    <PackageId>DigitTwin.MessageBus.Abstractions</PackageId>
     <Version>1.0.0</Version>
     <Authors>Yagudin Aleksandr</Authors>
     <Company>Yagudin Aleksandr</Company>
