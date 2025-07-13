@@ -60,12 +60,54 @@ jobs:
             --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
         done
 
-    - name: Publish packages to NuGet.org
+    - name: Publish MessageBus.Abstractions to NuGet.org
       run: |
-        for PKG in ./artifacts/*.nupkg; do
+        PKG="./artifacts/MessageBus.Abstractions.${{ steps.version.outputs.VERSION }}.nupkg"
+        if [ -f "$PKG" ]; then
           echo "Publishing $PKG to NuGet.org"
           dotnet nuget push $PKG \
             --skip-duplicate \
             --api-key ${{ secrets.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json
-        done
+        else
+          echo "Package $PKG not found, skipping..."
+        fi
+
+    - name: Publish MessageBus.Core to NuGet.org
+      run: |
+        PKG="./artifacts/MessageBus.Core.${{ steps.version.outputs.VERSION }}.nupkg"
+        if [ -f "$PKG" ]; then
+          echo "Publishing $PKG to NuGet.org"
+          dotnet nuget push $PKG \
+            --skip-duplicate \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json
+        else
+          echo "Package $PKG not found, skipping..."
+        fi
+
+    - name: Publish MessageBus.DependecyInjection to NuGet.org
+      run: |
+        PKG="./artifacts/MessageBus.DependecyInjection.${{ steps.version.outputs.VERSION }}.nupkg"
+        if [ -f "$PKG" ]; then
+          echo "Publishing $PKG to NuGet.org"
+          dotnet nuget push $PKG \
+            --skip-duplicate \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json
+        else
+          echo "Package $PKG not found, skipping..."
+        fi
+
+    - name: Publish MessageBus.MassTransit to NuGet.org
+      run: |
+        PKG="./artifacts/MessageBus.MassTransit.${{ steps.version.outputs.VERSION }}.nupkg"
+        if [ -f "$PKG" ]; then
+          echo "Publishing $PKG to NuGet.org"
+          dotnet nuget push $PKG \
+            --skip-duplicate \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json
+        else
+          echo "Package $PKG not found, skipping..."
+        fi
