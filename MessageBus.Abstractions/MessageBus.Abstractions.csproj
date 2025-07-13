@@ -4,6 +4,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>MessageBus.Abstractions</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Yagudin Aleksandr</Authors>
+    <Company>Yagudin Aleksandr</Company>
+    <Description>Абстракции для унифицированной работы с брокерами сообщений (RabbitMQ, Kafka) через MassTransit.</Description>
+    <PackageTags>messagebus, abstractions, messaging, mass-transit</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/YagudinAleksandr/MessageBus</RepositoryUrl>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(PackageId).xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

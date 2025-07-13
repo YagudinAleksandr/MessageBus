@@ -1,0 +1,71 @@
+name: Publish to GitHub Packages and NuGet.org
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Clean and prepare
+      run: |
+        mkdir -p ./artifacts
+        rm -rf ./artifacts/*
+
+    - name: Extract version
+      id: version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/}
+        VERSION=${VERSION#v}
+        echo "Version: $VERSION"
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Find and pack projects
+      run: |
+        for PROJ in $(find . -name "*.csproj" | grep -E "Abstractions|Core|DependecyInjection|MassTransit"); do
+          echo "Packing $PROJ"
+          dotnet pack $PROJ \
+            --configuration Release \
+            -p:PackageVersion=${{ steps.version.outputs.VERSION }} \
+            -p:Version=${{ steps.version.outputs.VERSION }} \
+            --output $(pwd)/artifacts
+        done
+
+    - name: Verify artifacts
+      run: |
+        echo "Artifacts:"
+        ls -la ./artifacts/
+        [ "$(ls -A ./artifacts)" ] || exit 1
+
+    - name: Publish packages to GitHub Packages
+      run: |
+        for PKG in ./artifacts/*.nupkg; do
+          echo "Publishing $PKG to GitHub Packages"
+          dotnet nuget push $PKG \
+            --skip-duplicate \
+            --api-key ${{ secrets.GITHUB_TOKEN }} \
+            --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        done
+
+    - name: Publish packages to NuGet.org
+      run: |
+        for PKG in ./artifacts/*.nupkg; do
+          echo "Publishing $PKG to NuGet.org"
+          dotnet nuget push $PKG \
+            --skip-duplicate \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json
+        done 
